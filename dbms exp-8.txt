@@ -1,0 +1,107 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use db;
+Database changed
+mysql> create table std;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> create table std
+    -> (id int(10),first_name char(20),last_name char(20),age int(15),subject char(20),games char(30));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc std;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| id         | int(10)  | YES  |     | NULL    |       |
+| first_name | char(20) | YES  |     | NULL    |       |
+| last_name  | char(20) | YES  |     | NULL    |       |
+| age        | int(15)  | YES  |     | NULL    |       |
+| subject    | char(20) | YES  |     | NULL    |       |
+| games      | char(30) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> insert into std values(1,'rama','raju',18,'dbms','cricket'),(2,'arjun','reddy',19,'c++','hockey'),(3,'sai','mohan',20,'biology','tennis');
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from std;
++------+------------+-----------+------+---------+---------+
+| id   | first_name | last_name | age  | subject | games   |
++------+------------+-----------+------+---------+---------+
+|    1 | rama       | raju      |   18 | dbms    | cricket |
+|    2 | arjun      | reddy     |   19 | c++     | hockey  |
+|    3 | sai        | mohan     |   20 | biology | tennis  |
++------+------------+-----------+------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select id,first_name
+    -> from std
+    -> where first_name in(select first_name from std where subject='dbms');
++------+------------+
+| id   | first_name |
++------+------------+
+|    1 | rama       |
++------+------------+
+1 row in set (0.02 sec)
+
+mysql> desc test;
+ERROR 1146 (42S02): Table 'db.test' doesn't exist
+mysql> use db;
+Database changed
+mysql> create table test
+    -> (id int(10),name char(20));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc test;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| id    | int(10)  | YES  |     | NULL    |       |
+| name  | char(20) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into test(id,name)
+    -> select id,first_name
+    -> from std where games='tennis';
+Query OK, 1 row affected (0.02 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select * from test;
++------+------+
+| id   | name |
++------+------+
+|    3 | sai  |
++------+------+
+1 row in set (0.00 sec)
+
+mysql> select id,(select name from test where id=3)as name,age,subject,games from std where id=3;
++------+------+------+---------+--------+
+| id   | name | age  | subject | games  |
++------+------+------+---------+--------+
+|    3 | sai  |   20 | biology | tennis |
++------+------+------+---------+--------+
+1 row in set (0.02 sec)
+
+mysql> select * from std where age>=(select avg(age)from std);
++------+------------+-----------+------+---------+--------+
+| id   | first_name | last_name | age  | subject | games  |
++------+------------+-----------+------+---------+--------+
+|    2 | arjun      | reddy     |   19 | c++     | hockey |
+|    3 | sai        | mohan     |   20 | biology | tennis |
++------+------------+-----------+------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql>
