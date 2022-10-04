@@ -1,0 +1,61 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use db;
+Database changed
+mysql> desc student;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| std_regno  | int(5)   | YES  |     | NULL    |       |
+| name       | char(20) | YES  |     | NULL    |       |
+| gender     | char(5)  | YES  |     | NULL    |       |
+| phone      | int(15)  | YES  |     | NULL    |       |
+| department | char(20) | YES  |     | NULL    |       |
+| address    | char(40) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into student values(123,'arjun_reddy','m',9182426,'cse','chennai'),(143,'liger','m',7382884,'it','ennore'),(198,'inaya','f',630340177,'ece','biggboss');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++-----------+-------------+--------+-----------+------------+----------+
+| std_regno | name        | gender | phone     | department | address  |
++-----------+-------------+--------+-----------+------------+----------+
+|       123 | arjun_reddy | m      |   9182426 | cse        | chennai  |
+|       143 | liger       | m      |   7382884 | it         | ennore   |
+|       198 | inaya       | f      | 630340177 | ece        | biggboss |
++-----------+-------------+--------+-----------+------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select name from student;
++-------------+
+| name        |
++-------------+
+| arjun_reddy |
+| liger       |
+| inaya       |
++-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name='liger';
++-----------+-------+--------+---------+------------+---------+
+| std_regno | name  | gender | phone   | department | address |
++-----------+-------+--------+---------+------------+---------+
+|       143 | liger | m      | 7382884 | it         | ennore  |
++-----------+-------+--------+---------+------------+---------+
+1 row in set (0.02 sec)
+
+mysql>
