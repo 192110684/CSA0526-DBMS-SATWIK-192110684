@@ -1,0 +1,87 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create table actor
+    -> (actor_rank int(10),name char(20),gender char(5),actor_role char(40),number_of_movies int(10));
+ERROR 1046 (3D000): No database selected
+mysql> use db;
+Database changed
+mysql>   create table actor
+    -> (actor_rank int(10),name char(20),gender char(5),actor_role char(40),number_of_movies int(10));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc actor;
++------------------+----------+------+-----+---------+-------+
+| Field            | Type     | Null | Key | Default | Extra |
++------------------+----------+------+-----+---------+-------+
+| actor_rank       | int(10)  | YES  |     | NULL    |       |
+| name             | char(20) | YES  |     | NULL    |       |
+| gender           | char(5)  | YES  |     | NULL    |       |
+| actor_role       | char(40) | YES  |     | NULL    |       |
+| number_of_movies | int(10)  | YES  |     | NULL    |       |
++------------------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table actor add primary key(actor_rank);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc actor;
++------------------+----------+------+-----+---------+-------+
+| Field            | Type     | Null | Key | Default | Extra |
++------------------+----------+------+-----+---------+-------+
+| actor_rank       | int(10)  | NO   | PRI | 0       |       |
+| name             | char(20) | YES  |     | NULL    |       |
+| gender           | char(5)  | YES  |     | NULL    |       |
+| actor_role       | char(40) | YES  |     | NULL    |       |
+| number_of_movies | int(10)  | YES  |     | NULL    |       |
++------------------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> use satwik;
+ERROR 1049 (42000): Unknown database 'satwik'
+mysql> alter table actor add unique(actor_rank);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc actor;
++------------------+----------+------+-----+---------+-------+
+| Field            | Type     | Null | Key | Default | Extra |
++------------------+----------+------+-----+---------+-------+
+| actor_rank       | int(10)  | NO   | PRI | 0       |       |
+| name             | char(20) | YES  |     | NULL    |       |
+| gender           | char(5)  | YES  |     | NULL    |       |
+| actor_role       | char(40) | YES  |     | NULL    |       |
+| number_of_movies | int(10)  | YES  |     | NULL    |       |
++------------------+----------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql>  alter table actor add unique(number_of_movies);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc actor;
++------------------+----------+------+-----+---------+-------+
+| Field            | Type     | Null | Key | Default | Extra |
++------------------+----------+------+-----+---------+-------+
+| actor_rank       | int(10)  | NO   | PRI | 0       |       |
+| name             | char(20) | YES  |     | NULL    |       |
+| gender           | char(5)  | YES  |     | NULL    |       |
+| actor_role       | char(40) | YES  |     | NULL    |       |
+| number_of_movies | int(10)  | YES  | UNI | NULL    |       |
++------------------+----------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> alter table actor add foreign key(name);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql>
