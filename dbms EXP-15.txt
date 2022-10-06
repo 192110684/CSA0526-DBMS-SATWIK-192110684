@@ -1,0 +1,69 @@
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use studnt;
+ERROR 1049 (42000): Unknown database 'studnt'
+mysql> use student;
+Database changed
+mysql> DELIMITER ;
+mysql> CALL student();
++------+-------+
+| id   | Name  |
++------+-------+
+|   11 | Rahul |
++------+-------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> select*from std;
++------+--------+------+---------+---------+
+| id   | Name   | Age  | Subject | Games   |
++------+--------+------+---------+---------+
+|   11 | Rahul  |   18 | Dbms    | Cricket |
+|   12 | Vikas  |   19 | c prog  | Chess   |
+|   13 | Rajesh |   20 | OOAD    | hockey  |
+|   17 | Vinay  |   17 | java    | tennis  |
++------+--------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from std where subject='Dbms';
++------+-------+------+---------+---------+
+| id   | Name  | Age  | Subject | Games   |
++------+-------+------+---------+---------+
+|   11 | Rahul |   18 | Dbms    | Cricket |
++------+-------+------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE stu()
+    -> BEGIN
+    -> SELECT id,Name
+    -> FROM STD
+    -> WHERE Games='hockey';
+    -> END//
+
+
+mysql> call stu();
++------+--------+
+| id   | Name   |
++------+--------+
+|   13 | Rajesh |
++------+--------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
