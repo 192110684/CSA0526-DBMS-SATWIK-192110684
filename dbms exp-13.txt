@@ -1,0 +1,81 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+mysql> use student;
+Database changed
+mysql> create table university(id int(3),college name char(30),no_of_students int(20),no_of_professors int(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name char(30),no_of_students int(20),no_of_professors int(10))' at line 1
+mysql> create table university(id int(3),college_name char(30),no_of_students int(20),no_of_professors int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into university values(101,'SAVEETHA',3000,500),(102,'PANIMALAR',2000,324),(3,'VELTECH',6000,800);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM university;
++------+--------------+----------------+------------------+
+| id   | college_name | no_of_students | no_of_professors |
++------+--------------+----------------+------------------+
+|  101 | SAVEETHA     |           3000 |              500 |
+|  102 | PANIMALAR    |           2000 |              324 |
+|    3 | VELTECH      |           6000 |              800 |
++------+--------------+----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> savepoint insertion;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update university set id=103 where college_name=VELTECH;
+ERROR 1054 (42S22): Unknown column 'VELTECH' in 'where clause'
+mysql> update university set no_of_students=3500 where id=101;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update university set id=103 where college_name='VELTECH';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from university;
++------+--------------+----------------+------------------+
+| id   | college_name | no_of_students | no_of_professors |
++------+--------------+----------------+------------------+
+|  101 | SAVEETHA     |           3500 |              500 |
+|  102 | PANIMALAR    |           2000 |              324 |
+|  103 | VELTECH      |           6000 |              800 |
++------+--------------+----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> savepoint updation;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback to insertion;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from university;
++------+--------------+----------------+------------------+
+| id   | college_name | no_of_students | no_of_professors |
++------+--------------+----------------+------------------+
+|  101 | SAVEETHA     |           3000 |              500 |
+|  102 | PANIMALAR    |           2000 |              324 |
+|    3 | VELTECH      |           6000 |              800 |
++------+--------------+----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql>
