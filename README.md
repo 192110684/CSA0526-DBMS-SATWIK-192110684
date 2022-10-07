@@ -44,3 +44,9 @@
 
 ## Experiment 15
 [SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20exp-15.txt
+
+## Experiment 17
+[SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20EXP-17.txt
+
+## Experiment 18
+[SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20EXP-18.txt
