@@ -1,0 +1,135 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE STUDENT;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| course            |
+| department        |
+| faculty           |
+| marks_view        |
+| persons           |
+| std               |
+| student           |
+| student_report    |
+| test              |
+| university        |
++-------------------+
+10 rows in set (0.00 sec)
+
+mysql> select*from marks_view;
++---------+-----------------+
+| name    | marks and Grade |
++---------+-----------------+
+| Ramya   |               0 |
+| Keerthi |               0 |
+| Nihal   |               0 |
+| Satwik  |               0 |
+| Vinay   |               0 |
+| Amulya  |               0 |
+| Nathan  |               0 |
++---------+-----------------+
+7 rows in set, 7 warnings (0.01 sec)
+
+mysql> seelect*from student_report;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'seelect*from student_report' at line 1
+mysql> select*from student_report;
++-------+---------+-------+------------+-------+
+| regn0 | name    | marks | totalmarks | Grade |
++-------+---------+-------+------------+-------+
+|  1210 | Ramya   |    75 |        100 | B     |
+|  1211 | Keerthi |    90 |        100 | A     |
+|  1212 | Nihal   |    96 |        100 | S     |
+|  1213 | Satwik  |    95 |        100 | S     |
+|  1214 | Vinay   |    82 |        100 | A     |
+|  1215 | Amulya  |    86 |        100 | A     |
+|  1216 | Nathan  |    92 |        100 | S     |
++-------+---------+-------+------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select@@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student_report values(1217,'chandana'.99,100,'S');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.99,100,'S')' at line 1
+mysql> insert into student_report values(1217,'chandana',99,100,'S');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from student_report;
++-------+----------+-------+------------+-------+
+| regn0 | name     | marks | totalmarks | Grade |
++-------+----------+-------+------------+-------+
+|  1210 | Ramya    |    75 |        100 | B     |
+|  1211 | Keerthi  |    90 |        100 | A     |
+|  1212 | Nihal    |    96 |        100 | S     |
+|  1213 | Satwik   |    95 |        100 | S     |
+|  1214 | Vinay    |    82 |        100 | A     |
+|  1215 | Amulya   |    86 |        100 | A     |
+|  1216 | Nathan   |    92 |        100 | S     |
+|  1217 | chandana |    99 |        100 | S     |
++-------+----------+-------+------------+-------+
+8 rows in set (0.00 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select@@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            0 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> delete from student_report where Grade='A';
+Query OK, 3 rows affected (0.00 sec)
+
+mysql> select * from student_report;
++-------+----------+-------+------------+-------+
+| regn0 | name     | marks | totalmarks | Grade |
++-------+----------+-------+------------+-------+
+|  1210 | Ramya    |    75 |        100 | B     |
+|  1212 | Nihal    |    96 |        100 | S     |
+|  1213 | Satwik   |    95 |        100 | S     |
+|  1216 | Nathan   |    92 |        100 | S     |
+|  1217 | chandana |    99 |        100 | S     |
++-------+----------+-------+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student_report;
++-------+----------+-------+------------+-------+
+| regn0 | name     | marks | totalmarks | Grade |
++-------+----------+-------+------------+-------+
+|  1210 | Ramya    |    75 |        100 | B     |
+|  1211 | Keerthi  |    90 |        100 | A     |
+|  1212 | Nihal    |    96 |        100 | S     |
+|  1213 | Satwik   |    95 |        100 | S     |
+|  1214 | Vinay    |    82 |        100 | A     |
+|  1215 | Amulya   |    86 |        100 | A     |
+|  1216 | Nathan   |    92 |        100 | S     |
+|  1217 | chandana |    99 |        100 | S     |
++-------+----------+-------+------------+-------+
+8 rows in set (0.00 sec)
+
+mysql>
