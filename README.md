@@ -25,7 +25,7 @@
 [SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20exp-8.txt
 
 ## Experiment 9
-[SQL Queries]
+[SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20exp-9.txt
 
 ## Experiment 10
 [SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20exp-10.txt
@@ -34,7 +34,7 @@
 [SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20exp-11.txt
 
 ## Experiment 12
-[SQL Queries]
+[SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20EXP-12.txt
 
 ## Experiment 13
 [SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20exp-13.txt
@@ -50,3 +50,24 @@
 
 ## Experiment 18
 [SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20EXP-18.txt
+
+## Experiment 19
+[SQL Queries]https://github.com/192110684/CSA0526-DBMS-SATWIK-192110684/blob/main/dbms%20exp-19.txt
+
+## Experiment 20
+[SQL Queries]
+
+## Experiment 21
+[SQL Queries]
+
+## Experiment 22
+[SQL Queries]
+
+## Experiment 23
+[SQL Queries]
+
+## Experiment 24
+[SQL Queries]
+
+## Experiment 25
+[SQL Queries]
