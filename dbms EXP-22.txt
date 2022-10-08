@@ -1,0 +1,134 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 28
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use student;
+Database changed
+mysql> create table book_publishing_company
+    -> (book_id int(5),book_name char(20),author_of_book char(20),cost_of_book int(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc book_publishing_company;
++----------------+----------+------+-----+---------+-------+
+| Field          | Type     | Null | Key | Default | Extra |
++----------------+----------+------+-----+---------+-------+
+| book_id        | int(5)   | YES  |     | NULL    |       |
+| book_name      | char(20) | YES  |     | NULL    |       |
+| author_of_book | char(20) | YES  |     | NULL    |       |
+| cost_of_book   | int(20)  | YES  |     | NULL    |       |
++----------------+----------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into book_publishing_company values(121,'Tom_jones','Henry_fielding',299),(141,'David_Copperfield','Charles_dickens',499),(161,'War_and_Peace','Tolstoy',899),(199,'Red_and_wine','Stendhal',999);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select* from book_publishing_company;
++---------+-------------------+-----------------+--------------+
+| book_id | book_name         | author_of_book  | cost_of_book |
++---------+-------------------+-----------------+--------------+
+|     121 | Tom_jones         | Henry_fielding  |          299 |
+|     141 | David_Copperfield | Charles_dickens |          499 |
+|     161 | War_and_Peace     | Tolstoy         |          899 |
+|     199 | Red_and_wine      | Stendhal        |          999 |
++---------+-------------------+-----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update book_publishing_company
+    -> set book_id=199
+    -> where author_of_book='Tolstoy';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from book_publishing_company;
++---------+-------------------+-----------------+--------------+
+| book_id | book_name         | author_of_book  | cost_of_book |
++---------+-------------------+-----------------+--------------+
+|     121 | Tom_jones         | Henry_fielding  |          299 |
+|     141 | David_Copperfield | Charles_dickens |          499 |
+|     199 | War_and_Peace     | Tolstoy         |          899 |
+|     199 | Red_and_wine      | Stendhal        |          999 |
++---------+-------------------+-----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into book_publishing_company values(198,'Moby_dick','Herman',649);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from book_publishing_company;
++---------+-------------------+-----------------+--------------+
+| book_id | book_name         | author_of_book  | cost_of_book |
++---------+-------------------+-----------------+--------------+
+|     121 | Tom_jones         | Henry_fielding  |          299 |
+|     141 | David_Copperfield | Charles_dickens |          499 |
+|     199 | War_and_Peace     | Tolstoy         |          899 |
+|     199 | Red_and_wine      | Stendhal        |          999 |
+|     198 | Moby_dick         | Herman          |          649 |
++---------+-------------------+-----------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from book_publishing_company
+    -> where book_id=198;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select* from book_publishing_company;
++---------+-------------------+-----------------+--------------+
+| book_id | book_name         | author_of_book  | cost_of_book |
++---------+-------------------+-----------------+--------------+
+|     121 | Tom_jones         | Henry_fielding  |          299 |
+|     141 | David_Copperfield | Charles_dickens |          499 |
+|     199 | War_and_Peace     | Tolstoy         |          899 |
+|     199 | Red_and_wine      | Stendhal        |          999 |
++---------+-------------------+-----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> create table authors(author_name char(20),subject_related char(30),written_book char(30));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc authors;
++-----------------+----------+------+-----+---------+-------+
+| Field           | Type     | Null | Key | Default | Extra |
++-----------------+----------+------+-----+---------+-------+
+| author_name     | char(20) | YES  |     | NULL    |       |
+| subject_related | char(30) | YES  |     | NULL    |       |
+| written_book    | char(30) | YES  |     | NULL    |       |
++-----------------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into authors values('newton','physics','gravity'),('sum','bioscience','heart_function'),('ramanujan','maths','simple_equations');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from authors;
++-------------+-----------------+------------------+
+| author_name | subject_related | written_book     |
++-------------+-----------------+------------------+
+| newton      | physics         | gravity          |
+| sum         | bioscience      | heart_function   |
+| ramanujan   | maths           | simple_equations |
++-------------+-----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into authors values('Vinay','English','Spoken_english');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from authors;
++-------------+-----------------+------------------+
+| author_name | subject_related | written_book     |
++-------------+-----------------+------------------+
+| newton      | physics         | gravity          |
+| sum         | bioscience      | heart_function   |
+| ramanujan   | maths           | simple_equations |
+| Vinay       | English         | Spoken_english   |
++-------------+-----------------+------------------+
+4 rows in set (0.00 sec)
+
+mysql>
